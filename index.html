@@ -8,21 +8,19 @@
 </head>
 <body>
   <div class="container">
+    <!-- Camera Area -->
     <div class="camera-area">
       <video id="video" autoplay playsinline></video>
       <canvas id="canvas"></canvas>
       <img src="assets/anirudh-frame.png" id="frame" />
     </div>
 
-    <!-- Take Selfie Button -->
+    <!-- Selfie Buttons -->
     <button id="snap">📸 Take Selfie</button>
-
-    <!-- Preview -->
     <img id="preview" style="display:none;" />
-
-    <!-- Download & Share -->
     <a id="download" download="anirudh_selfie.png" style="display:none;">⬇️ Download</a>
     <button id="shareBtn" style="display:none;">📤 Share</button>
+    <button id="retakeBtn" style="display:none;">🔄 Retake</button>
   </div>
 
   <script src="script.js"></script>
