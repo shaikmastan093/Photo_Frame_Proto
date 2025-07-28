@@ -9,11 +9,20 @@ const preview = document.getElementById('preview');
 const ctx = canvas.getContext('2d');
 const cameraArea = document.querySelector('.camera-area');
 
-// Access webcam
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
-  .then(stream => {
-    video.srcObject = stream;
-  });
+// Start webcam function
+function startCamera() {
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+    .then(stream => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch(err => {
+      console.error("Failed to access camera:", err);
+    });
+}
+
+// Initial start
+startCamera();
 
 snapBtn.addEventListener('click', () => {
   canvas.width = video.videoWidth;
@@ -67,4 +76,7 @@ retakeBtn.addEventListener('click', () => {
   downloadLink.style.display = 'none';
   shareBtn.style.display = 'none';
   retakeBtn.style.display = 'none';
+
+  // Clear canvas (remove old image from background)
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
