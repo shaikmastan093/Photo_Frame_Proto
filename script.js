@@ -28,13 +28,18 @@ snapBtn.addEventListener('click', () => {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
 
-  // Draw camera + frame
-  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+  // Flip the canvas to correct mirrored video while capturing
+  ctx.save();
+  ctx.scale(-1, 1); // flip horizontally
+  ctx.drawImage(video, -canvas.width, 0, canvas.width, canvas.height);
+  ctx.restore();
+
+  // Draw the frame overlay (not flipped)
   ctx.drawImage(frame, 0, 0, canvas.width, canvas.height);
 
   const dataUrl = canvas.toDataURL('image/png');
 
-  // Show preview only
+  // Show preview
   preview.src = dataUrl;
   preview.style.display = 'block';
 
